@@ -24,9 +24,9 @@
   h1,h2,h3{font-family:'Noto Serif KR',serif;line-height:1.25}
 
   /* HERO */
-  .hero{position:relative;overflow:hidden;background:radial-gradient(120% 120% at 50% -10%, #1c6b50 0%, var(--jade) 42%, var(--jade-deep) 100%);color:var(--cream);padding:50px 18px 42px;text-align:center}
+  .hero{position:relative;overflow:hidden;background:linear-gradient(180deg, rgba(14,58,47,.55) 0%, rgba(14,58,47,.45) 45%, rgba(14,58,47,.82) 100%), url('shanghai_back.jpg') center 28%/cover no-repeat;color:var(--cream);padding:60px 18px 52px;text-align:center}
   .fan{position:absolute;top:-90px;left:50%;transform:translateX(-50%);width:520px;height:520px;opacity:.15;pointer-events:none}
-  .hero-inner{position:relative;z-index:2;max-width:780px;margin:0 auto}
+  .hero-inner{position:relative;z-index:2;max-width:780px;margin:0 auto;text-shadow:0 2px 12px rgba(0,0,0,.45)}
   .hero .eyebrow{color:var(--gold-soft)}
   .hero h1{font-size:clamp(32px,8vw,52px);font-weight:900;color:#fff;margin:10px 0 6px;letter-spacing:-.01em}
   .deco-rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:300px}
@@ -143,6 +143,35 @@
   .tip-img-link{display:block;text-decoration:none;margin:0 0 22px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
   .tip-img{display:block;width:100%;height:auto}
   .tip-img-cap{display:block;text-align:center;font-size:12px;color:var(--ink-soft);padding:8px;background:var(--cream-2)}
+
+  /* app accordion */
+  .acc-item{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
+  .acc-head{display:flex;align-items:center;gap:12px;width:100%;border:none;background:none;cursor:pointer;padding:15px 16px;text-align:left;font-family:'Noto Sans KR'}
+  .acc-head .ic{width:38px;height:38px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:16px}
+  .acc-head .nm{flex:1}
+  .acc-head .nm b{display:block;font-family:'Noto Serif KR';font-size:16px;font-weight:700;color:var(--jade-deep)}
+  .acc-head .nm span{font-size:12px;color:var(--ink-soft)}
+  .acc-head .arr{color:var(--gold);font-size:14px;transition:transform .2s;flex:none}
+  .acc-item.open .acc-head .arr{transform:rotate(180deg)}
+  .acc-body{display:none;padding:0 16px 16px;font-size:13.5px;line-height:1.6}
+  .acc-item.open .acc-body{display:block}
+  .acc-body h4{font-family:'Noto Serif KR';font-size:13px;color:var(--crimson);margin:12px 0 6px;font-weight:700}
+  .acc-body ol{margin:0;padding-left:20px}
+  .acc-body ol li{margin-bottom:5px}
+  .acc-body .naver{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:#03c75a;color:#fff;font-weight:700;font-size:13px;padding:9px 14px;border-radius:10px;text-decoration:none}
+
+  /* 자세히 보기 토글 */
+  .more-btn{margin-top:10px;background:var(--cream-2);color:var(--jade-deep);border:1px solid var(--line);border-radius:10px;font-family:'Noto Sans KR';font-weight:700;font-size:12.5px;padding:8px 14px;cursor:pointer}
+  .more-btn:hover{background:var(--gold-soft)}
+  .more-body{display:none;margin-top:12px;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:12px;font-size:13.5px;line-height:1.6}
+  .more-body.show{display:block}
+  .more-body h4{font-family:'Noto Serif KR';font-size:13px;color:var(--crimson);margin:10px 0 6px;font-weight:700}
+  .more-body h4:first-child{margin-top:0}
+  .more-body ol{margin:0;padding-left:20px}
+  .more-body ol li{margin-bottom:5px}
+  .more-body .naver{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:#03c75a;color:#fff;font-weight:700;font-size:13px;padding:9px 14px;border-radius:10px;text-decoration:none}
+  .more-body .naver:hover{filter:brightness(.95)}
+  .acc-body .naver:hover{filter:brightness(.95)}
   @media (max-width:480px){.plain-list{columns:1}}
 
   /* copy modal */
@@ -164,10 +193,6 @@
 <body>
 
 <header class="hero">
-  <svg class="fan" viewBox="0 0 200 200" aria-hidden="true">
-    <g fill="none" stroke="#E6CE8E" stroke-width="1"><circle cx="100" cy="100" r="92"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="40"/></g>
-    <g stroke="#E6CE8E" stroke-width="1" id="rays"></g>
-  </svg>
   <div class="hero-inner">
     <div class="eyebrow">Shanghai Family Trip</div>
     <h1>상하이 가족여행</h1>
@@ -339,6 +364,16 @@
         <li><b>입국신고 QR</b> — 중국 입국신고서 작성</li>
         <li>※ 위 앱들은 <b>로그인 필수</b>. 현지선 인증문자 수신이 어려울 수 있어 <b>한국에서 미리 로그인</b>해 두세요.</li>
       </ul>
+      <button class="more-btn" type="button">자세히 보기 ▾</button>
+      <div class="more-body">
+        <h4>알리페이 (만능 결제앱)</h4>
+        <ol><li>출발 전 한국에서 <b>Alipay</b> 설치·번호 인증</li><li>프로필 → Bank Cards에서 <b>해외 카드(비자/마스터) 등록</b></li><li>메인 Pay로 QR 스캔 또는 내 QR 보여주기</li><li>메인에 디디택시·번역·미니프로그램도 내장</li></ol>
+        <h4>고德지도 / 바이두지도</h4>
+        <ol><li>고德(AMAP)은 <b>한국 번호로도 가입</b> 가능</li><li>중국어 주소로 검색(이 일정표 “중국어 복사” 활용)</li><li>대중교통·도보·택시 길찾기</li></ol>
+        <h4>파파고</h4>
+        <ol><li>메뉴판은 <b>이미지 번역</b>(카메라)</li><li>대화는 <b>음성 번역</b>으로 화면 보여주기</li></ol>
+        <a class="naver" href="https://search.naver.com/search.naver?query=중국여행 필수앱 사용법" target="_blank" rel="noopener">네이버에서 자세히 보기</a>
+      </div>
     </div>
 
     <div class="talk-group">
@@ -350,6 +385,11 @@
         <li>해외 문자 차단 여부 확인</li>
         <li><b>그래도 안 되면</b> — 바이두 앱으로 가입하거나, <b>한국 번호로 가입 가능한 고德지도(AMAP)</b> 이용</li>
       </ul>
+      <button class="more-btn" type="button">자세히 보기 ▾</button>
+      <div class="more-body">
+        <ol><li>통신사 <b>해외 문자 수신 차단</b>이 걸려 있으면 인증문자가 안 와요 → 통신사 앱/고객센터에서 해제</li><li>일부 인증은 <b>중국 시간 새벽</b>(트래픽 적을 때) 더 잘 됨</li><li>그래도 막히면 한국에서 미리 가입을 끝내두는 게 최선</li></ol>
+        <a class="naver" href="https://search.naver.com/search.naver?query=중국앱 인증번호 안올때 해결" target="_blank" rel="noopener">네이버에서 자세히 보기</a>
+      </div>
     </div>
 
     <div class="talk-group">
@@ -360,6 +400,11 @@
         <li>앱 안에 <b>메이투안(배달)</b> 기능이 있어 따종 하나면 OK</li>
         <li>⚠️ 메이투안 앱을 따로 깔면 계정 충돌로 403 에러·네트워크 오류 가능 → <b>따종디엔핑 하나만</b> 쓰세요</li>
       </ul>
+      <button class="more-btn" type="button">자세히 보기 ▾</button>
+      <div class="more-body">
+        <ol><li><b>大众点评</b> 설치 후 가게명(중국어)으로 검색</li><li>별점·人均(1인 가격)·메뉴·영업시간 확인</li><li>가게 페이지에서 <b>예약/웨이팅 등록</b></li><li>배달은 앱 내 메이투안 기능 이용</li></ol>
+        <a class="naver" href="https://search.naver.com/search.naver?query=따종디엔핑 사용법" target="_blank" rel="noopener">네이버에서 자세히 보기</a>
+      </div>
     </div>
 
     <div class="talk-group">
@@ -369,6 +414,14 @@
         <li><b>배달</b> — 위챗/알리페이 미니프로그램에서: 위챗→메이투안, 알리페이→어러머(饿了么)·타오바오 등</li>
         <li>대부분의 결제는 <b>알리페이/위챗페이</b>로 가능</li>
       </ul>
+      <button class="more-btn" type="button">자세히 보기 ▾</button>
+      <div class="more-body">
+        <h4>디디택시(滴滴) 부르기</h4>
+        <ol><li>알리페이에서 “디디(滴滴)” 검색·선택</li><li>목적지 입력(중국어 주소 붙여넣기)</li><li>차량 호출 → 도착 대기 → 알리페이 자동 결제</li></ol>
+        <h4>배달 시키기</h4>
+        <ol><li>위챗 미니프로그램 → <b>메이투안(美团)</b> 또는 알리페이 → <b>어러머(饿了么)</b></li><li>주소·메뉴 선택 후 결제 → 호텔로 배달</li></ol>
+        <a class="naver" href="https://search.naver.com/search.naver?query=중국 디디택시 사용법" target="_blank" rel="noopener">네이버에서 자세히 보기</a>
+      </div>
     </div>
 
     <div class="talk-group">
@@ -381,6 +434,11 @@
         <li>여권·항공권·일정표는 <b>사진으로 저장</b>해 두면 유용</li>
         <li>중국 지도앱은 <b>로그인해야</b> 정확한 위치 이용 가능</li>
       </ul>
+      <button class="more-btn" type="button">자세히 보기 ▾</button>
+      <div class="more-body">
+        <ol><li>비상용 현금은 소액 지폐(10·20·50元)로 준비</li><li>호텔·공항 환전보다 한국에서 환전 또는 알리페이 충전이 유리</li><li>수돗물은 못 마셔요 → 생수 구입(편의점 흔함)</li><li>긴급: 공안 110 / 구급 120 / 화재 119</li></ol>
+        <a class="naver" href="https://search.naver.com/search.naver?query=상하이 자유여행 꿀팁" target="_blank" rel="noopener">네이버에서 자세히 보기</a>
+      </div>
     </div>
 
     <div class="talk-group">
@@ -389,6 +447,11 @@
         <li>기름진·낯선 음식 대비: <b>소화제·지사제·진통제</b></li>
         <li><b>감기약·피로회복제</b>, 선택: 유산균·영양제</li>
       </ul>
+      <button class="more-btn" type="button">자세히 보기 ▾</button>
+      <div class="more-body">
+        <ol><li>개인 복용약은 <b>여유분 + 영문 약 이름</b> 메모</li><li>한여름이라 <b>탈수·온열질환</b> 주의 → 수분·전해질 보충</li><li>밴드·멀미약·모기약도 챙기면 든든</li></ol>
+        <a class="naver" href="https://search.naver.com/search.naver?query=해외여행 상비약 추천" target="_blank" rel="noopener">네이버에서 자세히 보기</a>
+      </div>
     </div>
 
     <p style="font-size:12.5px;color:var(--ink-soft);margin-top:8px">※ 미리 준비하고, 안전하고 즐거운 상하이 여행 되세요!</p>
@@ -791,7 +854,19 @@
   }
   function closeCopy(){document.getElementById('copyModal').classList.remove('show')}
 
+  // ── 꿀팁 '자세히 보기' 토글 ──
+  function initMoreToggles(){
+    document.querySelectorAll('.more-btn').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var body=btn.nextElementSibling;
+        var open=body.classList.toggle('show');
+        btn.textContent=open?'접기 ▴':'자세히 보기 ▾';
+      });
+    });
+  }
+
   render();
+  initMoreToggles();
 </script>
 </body>
 </html>

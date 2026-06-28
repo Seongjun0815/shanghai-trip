@@ -24,17 +24,19 @@
   h1,h2,h3{font-family:'Noto Serif KR',serif;line-height:1.25}
 
   /* HERO */
-  .hero{position:relative;overflow:hidden;background:linear-gradient(180deg, rgba(14,58,47,.55) 0%, rgba(14,58,47,.45) 45%, rgba(14,58,47,.82) 100%), url('shanghai_back.jpg') center 28%/cover no-repeat;color:var(--cream);padding:60px 18px 52px;text-align:center}
-  .fan{position:absolute;top:-90px;left:50%;transform:translateX(-50%);width:520px;height:520px;opacity:.15;pointer-events:none}
-  .hero-inner{position:relative;z-index:2;max-width:780px;margin:0 auto;text-shadow:0 2px 12px rgba(0,0,0,.45)}
-  .hero .eyebrow{color:var(--gold-soft)}
-  .hero h1{font-size:clamp(32px,8vw,52px);font-weight:900;color:#fff;margin:10px 0 6px;letter-spacing:-.01em}
+  .hero{position:relative;overflow:hidden;line-height:0;background:#0a0a14}
+  .hero-bg{display:block;width:100%;height:auto}
+  .hero-title{position:absolute;top:0;left:0;right:0;padding:22px 18px 0;text-align:center;line-height:1.25;text-shadow:0 2px 10px rgba(0,0,0,.9),0 0 26px rgba(0,0,0,.6)}
+  .hero-title .eyebrow{color:var(--gold-soft)}
+  .hero-title h1{font-size:clamp(24px,6.4vw,46px);font-weight:900;color:#fff;margin-top:6px;letter-spacing:-.01em}
+  .hero-caption{background:var(--jade-deep);color:var(--cream);text-align:center;padding:13px 18px;line-height:1.5}
+  .hero-caption .hc-date{display:block;font-family:'Noto Serif KR';font-weight:700;color:var(--gold-soft);font-size:14px}
+  .hero-caption .hc-sub{display:block;font-size:12px;color:rgba(245,239,226,.78);margin-top:2px}
   .deco-rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:300px}
   .deco-rule span{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
   .deco-rule span:last-child{background:linear-gradient(90deg,var(--gold),transparent)}
   .lozenge{width:9px;height:9px;background:var(--gold);transform:rotate(45deg)}
-  .hero .date{margin-top:16px;font-size:14px;color:var(--gold-soft);letter-spacing:.04em}
-  .hero .sub{margin-top:4px;font-size:12.5px;color:rgba(245,239,226,.7)}
+
 
   /* DAY TABS */
   .tabs{position:sticky;top:0;z-index:20;display:flex;flex-direction:column;gap:7px;align-items:center;background:var(--cream);padding:11px 12px;border-bottom:1px solid var(--line)}
@@ -193,14 +195,16 @@
 <body>
 
 <header class="hero">
-  <div class="hero-inner">
+  <img src="shanghai_back.jpg" alt="상하이 가족여행" class="hero-bg">
+  <div class="hero-title">
     <div class="eyebrow">Shanghai Family Trip</div>
-    <h1>상하이 가족여행</h1>
-    <div class="deco-rule"><span></span><i class="lozenge"></i><span></span></div>
-    <div class="date">2026. 7. 16 (목) – 7. 19 (일) · 3박 4일</div>
-    <div class="sub">김해 출발 · 그랜드 하얏트 → 하얏트 온더 번드 → 프라임 미니스터스</div>
+    <h1>2026 상하이 가족여행</h1>
   </div>
 </header>
+<div class="hero-caption">
+  <span class="hc-date">2026. 7. 16 (목) – 7. 19 (일) · 3박 4일</span>
+  <span class="hc-sub">김해 출발 · 그랜드 하얏트 → 하얏트 온더 번드 → 프라임 미니스터스</span>
+</div>
 
 <nav class="tabs" role="tablist" aria-label="메뉴">
   <div class="tab-row">
@@ -216,6 +220,7 @@
     <button class="tab" role="tab" onclick="show('food',this)">식당<small>맛집</small></button>
     <button class="tab" role="tab" onclick="show('spot',this)">갈 곳<small>명소·쇼핑</small></button>
     <button class="tab" role="tab" onclick="show('tips',this)">꿀팁<small>현지 노하우</small></button>
+    <button class="tab" role="tab" onclick="show('pay',this)">결제 TIP<small>카드·결제</small></button>
   </div>
   <div class="tab-row">
     <span class="row-label">그 외</span>
@@ -455,6 +460,115 @@
     </div>
 
     <p style="font-size:12.5px;color:var(--ink-soft);margin-top:8px">※ 미리 준비하고, 안전하고 즐거운 상하이 여행 되세요!</p>
+  </section>
+
+  <!-- ===================== 결제 TIP ===================== -->
+  <section class="day" id="daypay" role="tabpanel">
+    <div class="section-head"><div class="d">Payment · 카드·결제</div><h2>상하이 결제 꿀팁</h2></div>
+    <p style="font-size:13px;color:var(--ink-soft);margin:6px 0 18px">상하이에서 결제, 이렇게 준비하면 걱정 없어요. 각 항목의 <b>자세히 보기</b>를 눌러보세요.</p>
+
+    <a href="shanghai_money.jpg" target="_blank" rel="noopener" class="tip-img-link">
+      <img src="shanghai_money.jpg" alt="상하이 여행 결제 꿀팁 한장보기" class="tip-img" loading="lazy">
+      <span class="tip-img-cap">결제 한장보기 이미지 · 탭하면 크게 보기</span>
+    </a>
+
+    <div class="talk-group">
+      <div class="talk-head">① 알리페이 / 위챗페이</div>
+      <ul class="money-list">
+        <li>해외 카드 <b>등록 가능</b></li>
+        <li>대부분의 상점에서 <b>사용 가능</b></li>
+        <li>⚠️ 중국인 외 <b>현금 충전은 불가</b></li>
+      </ul>
+      <button class="more-btn" type="button">자세히 보기 ▾</button>
+      <div class="more-body">
+        <ol><li>출발 전 한국에서 앱 설치·가입</li><li>비자/마스터 <b>해외 카드 등록</b> 후 QR 결제</li><li>외국인은 현금 충전이 막혀 있어, <b>카드 연동 결제</b>로 사용</li><li>노점·택시·식당 대부분 QR로 결제</li></ol>
+        <a class="naver" href="https://search.naver.com/search.naver?query=알리페이 위챗페이 해외카드 등록" target="_blank" rel="noopener">네이버에서 자세히 보기</a>
+      </div>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">② 네이버페이 QR 결제</div>
+      <ul class="money-list">
+        <li>네이버머니로 <b>결제 가능</b></li>
+        <li>포인트 <b>사용 가능</b></li>
+        <li>❌ 카드 직접 결제는 <b>불가</b></li>
+        <li>※ 네이버페이 앱 → 해외결제 → <b>중국 선택</b></li>
+      </ul>
+      <button class="more-btn" type="button">자세히 보기 ▾</button>
+      <div class="more-body">
+        <ol><li>네이버페이 앱에서 <b>해외결제 → 중국</b> 선택</li><li>네이버머니 잔액·포인트로 결제</li><li>카드를 직접 긁는 방식은 안 되니 <b>미리 충전</b>해두기</li><li>알리페이가 안 될 때 보조 수단으로 유용</li></ol>
+        <a class="naver" href="https://search.naver.com/search.naver?query=네이버페이 중국 QR결제 사용법" target="_blank" rel="noopener">네이버에서 자세히 보기</a>
+      </div>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">어떤 카드가 가장 좋을까?</div>
+      <ul class="money-list">
+        <li><b>① 트래블로그 유니온페이</b> — 무료환전 · 알리페이·위챗페이 연동 · 200위안 초과 결제 수수료 없음 <b>(중국 여행 최강 추천)</b></li>
+        <li><b>② 트래블로그 마스터</b> — 무료환전 · ⚠️ 200위안 초과 결제 시 3% 수수료</li>
+        <li><b>③ 트래블월렛</b> — 실시간 환율 · ⚠️ 환전 수수료 있음 · 200위안 초과 시 3%</li>
+        <li><b>④ 일반 신용카드</b> — 별도 환전 없이 사용 · ⚠️ 해외 결제 수수료 · 200위안 초과 시 3%</li>
+        <li><b>⑤ 네이버페이머니 체크카드</b> — 네이버머니 사용 후 결제 · 앱→결제이벤트→해외→중국 이벤트 확인</li>
+      </ul>
+      <button class="more-btn" type="button">자세히 보기 ▾</button>
+      <div class="more-body">
+        <h4>핵심 정리</h4>
+        <ol><li>가장 추천은 <b>트래블로그 유니온페이</b> — 알리페이 연동 + 200위안 초과 수수료 없음</li><li>마스터/비자 계열은 <b>200위안 초과 결제 시 3% 수수료</b>가 붙어요</li><li>큰 금액은 <b>유니온페이</b>로, 또는 <b>200위안 이하로 나눠</b> 결제</li></ol>
+        <a class="naver" href="https://search.naver.com/search.naver?query=트래블로그 유니온페이 중국 사용" target="_blank" rel="noopener">네이버에서 자세히 보기</a>
+      </div>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">⚠️ 200위안 초과 결제 주의</div>
+      <ul class="money-list">
+        <li>알리페이·위챗페이에 등록된 <b>비자·마스터·아멕스(AMEX)</b> 등 해외 카드로 <b>200위안 초과 결제 시 추가 수수료 3%</b> 부과될 수 있음</li>
+      </ul>
+      <button class="more-btn" type="button">자세히 보기 ▾</button>
+      <div class="more-body">
+        <h4>수수료를 피하는 방법</h4>
+        <ol><li><b>트래블로그 유니온페이</b> 사용 (200위안 초과해도 수수료 없음)</li><li>또는 <b>200위안 이하로 나눠</b> 분할 결제 요청</li></ol>
+        <a class="naver" href="https://search.naver.com/search.naver?query=중국 알리페이 200위안 수수료" target="_blank" rel="noopener">네이버에서 자세히 보기</a>
+      </div>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">🏨 호텔 보증금 결제</div>
+      <ul class="money-list">
+        <li><b>추천</b> — 신용카드 (보증금이 실제 금액으로 출금되지 않아 가장 편리)</li>
+        <li><b>비추천</b> — 체크카드 · 트래블로그 · 트래블월렛</li>
+      </ul>
+      <button class="more-btn" type="button">자세히 보기 ▾</button>
+      <div class="more-body">
+        <ol><li>보증금 취소 시 카드사에 따라 <b>영업일 3~14일</b> 이상 소요될 수 있음</li><li>체크/충전식 카드는 실제 금액이 빠졌다가 돌아와 불편</li><li><b>신용카드는 가승인</b>만 잡혔다 풀려 가장 편리</li></ol>
+        <a class="naver" href="https://search.naver.com/search.naver?query=중국 호텔 보증금 신용카드" target="_blank" rel="noopener">네이버에서 자세히 보기</a>
+      </div>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">트래블로그 이용 꿀팁 · 은행 점검시간</div>
+      <ul class="money-list">
+        <li>트래블로그는 <b>충전식 카드</b> — 결제에 필요한 잔액을 하나머니로 충전</li>
+        <li>하나머니 충전: 연결된 계좌로 충전, 부족하면 연결 계좌에서 <b>자동 충전</b></li>
+        <li><b>자동환전 설정</b> 추천 — 결제 시 자동 환전돼 편리</li>
+        <li>⚠️ 은행 점검시간 주의 — 한국 23:30~00:30 / 중국 22:30~23:30 엔 결제 지연 가능</li>
+      </ul>
+      <button class="more-btn" type="button">자세히 보기 ▾</button>
+      <div class="more-body">
+        <ol><li>자동충전이 필요한 경우 <b>점검시간</b>엔 충전·결제가 지연될 수 있어요</li><li>야간 결제 전 미리 잔액을 충전해두면 안전</li></ol>
+        <a class="naver" href="https://search.naver.com/search.naver?query=트래블로그 자동환전 자동충전 설정" target="_blank" rel="noopener">네이버에서 자세히 보기</a>
+      </div>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">한 줄 정리</div>
+      <ul class="money-list">
+        <li>① <b>트래블로그 유니온페이 + 알리페이 연동</b></li>
+        <li>② <b>신용카드 1장</b> 비상용 준비</li>
+        <li>③ <b>네이버페이 QR</b> 결제 보조 활용</li>
+      </ul>
+    </div>
+
+    <p style="font-size:12.5px;color:var(--ink-soft);margin-top:8px">※ 안전하고 즐거운 여행 되세요! 수수료·정책은 카드사·시기에 따라 달라질 수 있어요.</p>
   </section>
 
   <!-- ===================== 여행 회화 ===================== -->

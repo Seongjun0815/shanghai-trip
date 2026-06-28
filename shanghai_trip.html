@@ -96,6 +96,8 @@
   .btn{font-family:'Noto Sans KR';font-size:12.5px;font-weight:700;border-radius:10px;padding:8px 13px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:5px;border:1px solid transparent;transition:.15s}
   .btn-map{background:var(--jade);color:var(--cream)}
   .btn-map:hover{background:var(--jade-deep)}
+  .btn-gmap{background:#fff;color:var(--jade-deep);border-color:var(--line)}
+  .btn-gmap:hover{background:var(--cream-2)}
   .btn-rev{background:#fff;color:var(--crimson);border-color:var(--line)}
   .btn-copy{background:var(--cream-2);color:var(--ink)}
   .btn-copy.done{background:var(--gold);color:#3a2f12}
@@ -103,6 +105,45 @@
 
   .foot{margin-top:34px;text-align:center;color:var(--ink-soft);font-size:12px}
   .foot .deco-rule{margin-bottom:14px}
+
+  /* phrasebook */
+  .talk-group{margin-bottom:20px}
+  .talk-head{font-family:'Noto Serif KR';font-size:15px;font-weight:700;color:var(--crimson);margin:0 0 10px;display:flex;align-items:center;gap:8px}
+  .talk-head::before{content:"";width:8px;height:8px;background:var(--gold);transform:rotate(45deg);flex:none}
+  .ph{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:8px;display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"zh py" "ko ko";gap:2px 12px;align-items:baseline}
+  .ph .zh{grid-area:zh;font-family:'Noto Serif KR';font-size:17px;font-weight:700;color:var(--jade-deep)}
+  .ph .py{grid-area:py;font-size:14px;font-weight:700;color:var(--crimson);text-align:right}
+  .ph .ko{grid-area:ko;font-size:13px;color:var(--ink-soft);margin-top:3px}
+
+  /* money tab */
+  .rate-box{background:linear-gradient(135deg,var(--jade) 0%,var(--jade-deep) 100%);color:var(--cream);border-radius:16px;padding:22px;text-align:center;margin-bottom:22px}
+  .rate-big{font-family:'Noto Serif KR';font-size:24px;font-weight:700}
+  .rate-big b{color:var(--gold-soft)}
+  .rate-sub{font-size:12px;color:rgba(245,239,226,.75);margin-top:6px}
+  .rate-tbl{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:14px}
+  .rate-tbl th{background:var(--cream-2);color:var(--jade-deep);font-weight:700;padding:10px 14px;text-align:left;font-family:'Noto Serif KR'}
+  .rate-tbl td{padding:9px 14px;border-top:1px solid var(--line)}
+  .rate-tbl tr td:first-child{font-weight:700;color:var(--crimson)}
+  .rate-tbl.num{font-size:13px}
+  .rate-tbl.num td{text-align:center;color:var(--ink);font-weight:500}
+  .rate-tbl.num tr td:first-child{color:var(--ink)}
+  .tip{font-size:12.5px;color:var(--ink-soft);background:var(--cream-2);border-radius:10px;padding:10px 12px;margin-top:10px;line-height:1.5}
+  .money-list{list-style:none;padding:0;margin:0}
+  .money-list li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:8px;font-size:13.5px;line-height:1.55;position:relative;padding-left:30px}
+  .money-list li::before{content:"◆";position:absolute;left:12px;top:11px;color:var(--gold);font-size:11px}
+  .money-list li b{color:var(--jade-deep)}
+
+  /* copy modal */
+  .modal-ov{position:fixed;inset:0;background:rgba(14,58,47,.55);display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
+  .modal-ov.show{display:flex}
+  .modal{background:var(--cream);border:1px solid var(--gold);border-radius:18px;max-width:380px;width:100%;padding:26px 24px 22px;position:relative;text-align:center;box-shadow:0 18px 50px rgba(0,0,0,.3)}
+  .modal-x{position:absolute;top:12px;right:14px;background:none;border:none;font-size:26px;line-height:1;color:var(--ink-soft);cursor:pointer}
+  .modal-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .modal-zh{font-family:'Noto Serif KR';font-size:30px;font-weight:900;color:var(--jade-deep);margin-top:8px;word-break:keep-all}
+  .modal-ko{font-size:14px;color:var(--ink-soft);margin-top:4px}
+  .modal-addr{font-size:14px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:16px;line-height:1.5;word-break:break-all}
+  .modal-copy{display:inline-block;margin-top:16px;background:var(--jade);color:var(--cream);font-size:14px;padding:11px 22px}
+  .modal-copy.done{background:var(--gold);color:#3a2f12}
 
   @media (max-width:480px){.card h3{font-size:18px}.tab{padding:7px 11px;font-size:12px}}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}}
@@ -129,6 +170,8 @@
   <button class="tab" role="tab" onclick="show(2,this)">2일차<small>7.17 금</small></button>
   <button class="tab" role="tab" onclick="show(3,this)">3일차<small>7.18 토</small></button>
   <button class="tab" role="tab" onclick="show(4,this)">4일차<small>7.19 일</small></button>
+  <button class="tab" role="tab" onclick="show('talk',this)">여행 회화<small>중국어</small></button>
+  <button class="tab" role="tab" onclick="show('money',this)">여행 돈<small>환율·결제</small></button>
 </nav>
 
 <main class="wrap">
@@ -242,6 +285,178 @@
     <div class="cards" data-day="4"></div>
   </section>
 
+  <!-- ===================== 여행 회화 ===================== -->
+  <section class="day" id="daytalk" role="tabpanel">
+    <div class="section-head"><div class="d">Travel Phrasebook · 중국어</div><h2>여행 회화</h2></div>
+    <p style="font-size:13px;color:var(--ink-soft);margin:6px 0 18px">한국어 발음으로 그대로 읽으면 통해요. 가게에서 <b>화면을 보여줘도</b> OK. 발음의 성조는 생략했어요.</p>
+
+    <div class="talk-group">
+      <div class="talk-head">기본 인사 · 표현</div>
+      <div class="ph"><div class="zh">你好</div><div class="py">니 하오</div><div class="ko">안녕하세요</div></div>
+      <div class="ph"><div class="zh">谢谢</div><div class="py">씨에씨에</div><div class="ko">감사합니다</div></div>
+      <div class="ph"><div class="zh">不好意思</div><div class="py">뿌 하오 이쓰</div><div class="ko">실례합니다 / 죄송해요</div></div>
+      <div class="ph"><div class="zh">听不懂</div><div class="py">팅 부 동</div><div class="ko">(말을) 못 알아들어요</div></div>
+      <div class="ph"><div class="zh">我是韩国人</div><div class="py">워 스 한궈런</div><div class="ko">저는 한국인이에요</div></div>
+      <div class="ph"><div class="zh">可以说英语吗?</div><div class="py">커이 슈어 잉위 마?</div><div class="ko">영어 되나요?</div></div>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">쇼핑 · 가격</div>
+      <div class="ph"><div class="zh">多少钱?</div><div class="py">뚸사오 치엔?</div><div class="ko">얼마예요?</div></div>
+      <div class="ph"><div class="zh">太贵了</div><div class="py">타이 꾸이 러</div><div class="ko">너무 비싸요</div></div>
+      <div class="ph"><div class="zh">便宜一点</div><div class="py">피엔이 이디엔</div><div class="ko">좀 깎아주세요</div></div>
+      <div class="ph"><div class="zh">可以试穿吗?</div><div class="py">커이 스촨 마?</div><div class="ko">입어봐도 되나요?</div></div>
+      <div class="ph"><div class="zh">有别的颜色吗?</div><div class="py">유 비에더 옌써 마?</div><div class="ko">다른 색 있어요?</div></div>
+      <div class="ph"><div class="zh">我要这个</div><div class="py">워 야오 쩌거</div><div class="ko">이거 주세요</div></div>
+      <div class="ph"><div class="zh">能用支付宝吗?</div><div class="py">넝 융 즈푸바오 마?</div><div class="ko">알리페이 되나요?</div></div>
+      <div class="ph"><div class="zh">可以刷卡吗?</div><div class="py">커이 슈아카 마?</div><div class="ko">카드 되나요?</div></div>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">식당 · 주문</div>
+      <div class="ph"><div class="zh">几位?</div><div class="py">지 웨이?</div><div class="ko">(직원) 몇 분이세요? → "지 거 런" 사람 수로 답</div></div>
+      <div class="ph"><div class="zh">点菜</div><div class="py">디엔 차이</div><div class="ko">주문할게요</div></div>
+      <div class="ph"><div class="zh">这个</div><div class="py">쩌거</div><div class="ko">이거요 (메뉴 가리키며)</div></div>
+      <div class="ph"><div class="zh">不要辣</div><div class="py">부 야오 라</div><div class="ko">안 맵게 해주세요</div></div>
+      <div class="ph"><div class="zh">买单</div><div class="py">마이 딴</div><div class="ko">계산해주세요</div></div>
+      <div class="ph"><div class="zh">打包</div><div class="py">따 빠오</div><div class="ko">포장해주세요</div></div>
+      <div class="ph"><div class="zh">好吃!</div><div class="py">하오 츠!</div><div class="ko">맛있어요!</div></div>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">길찾기 · 택시</div>
+      <div class="ph"><div class="zh">在哪里?</div><div class="py">짜이 나리?</div><div class="ko">어디예요?</div></div>
+      <div class="ph"><div class="zh">厕所在哪里?</div><div class="py">처숴 짜이 나리?</div><div class="ko">화장실 어디예요?</div></div>
+      <div class="ph"><div class="zh">请到这里</div><div class="py">칭 따오 쩌리</div><div class="ko">여기로 가주세요 (주소 보여주며)</div></div>
+      <div class="ph"><div class="zh">请停这里</div><div class="py">칭 팅 쩌리</div><div class="ko">여기서 세워주세요</div></div>
+      <div class="ph"><div class="zh">多长时间?</div><div class="py">뚸창 스지엔?</div><div class="ko">얼마나 걸려요?</div></div>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">상대가 자주 하는 답변 (알아듣기)</div>
+      <div class="ph"><div class="zh">扫码点单</div><div class="py">사오마 디엔딴</div><div class="ko">QR 찍어서 주문하세요</div></div>
+      <div class="ph"><div class="zh">扫这里</div><div class="py">사오 쩌리</div><div class="ko">여기 (QR) 찍으세요</div></div>
+      <div class="ph"><div class="zh">没有了 / 卖完了</div><div class="py">메이유 러 / 마이완 러</div><div class="ko">없어요 / 다 팔렸어요</div></div>
+      <div class="ph"><div class="zh">稍等</div><div class="py">사오 덩</div><div class="ko">잠시만요</div></div>
+      <div class="ph"><div class="zh">不能 / 不行</div><div class="py">뿌 넝 / 뿌 싱</div><div class="ko">안 돼요</div></div>
+      <div class="ph"><div class="zh">现金还是支付宝?</div><div class="py">시엔진 하이스 즈푸바오?</div><div class="ko">현금이요, 알리페이요?</div></div>
+    </div>
+
+    <p style="font-size:12.5px;color:var(--ink-soft);margin-top:16px">팁: 중국은 현금·카드보다 <b>알리페이/위챗페이</b> 위주예요. 말이 막히면 번역앱 화면이나 위 한자를 보여주면 대부분 해결됩니다.</p>
+  </section>
+
+  <!-- ===================== 여행 돈 ===================== -->
+  <section class="day" id="daymoney" role="tabpanel">
+    <div class="section-head"><div class="d">Money · 환율 · 결제</div><h2>여행 돈</h2></div>
+
+    <div class="rate-box">
+      <div class="rate-big">1 위안(元) ≈ 약 <b>222원</b></div>
+      <div class="rate-sub">2026년 6월 기준 · 환율은 매일 바뀌니 대략값으로 보세요 (대개 220~226원)</div>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">한눈에 보는 환산표</div>
+      <table class="rate-tbl">
+        <tr><th>위안 (元)</th><th>한국 돈 (원)</th></tr>
+        <tr><td>1 元</td><td>약 220원</td></tr>
+        <tr><td>5 元</td><td>약 1,100원</td></tr>
+        <tr><td>10 元</td><td>약 2,200원</td></tr>
+        <tr><td>20 元</td><td>약 4,400원</td></tr>
+        <tr><td>50 元</td><td>약 11,000원</td></tr>
+        <tr><td>100 元</td><td>약 22,000원</td></tr>
+        <tr><td>200 元</td><td>약 44,000원</td></tr>
+        <tr><td>500 元</td><td>약 110,000원</td></tr>
+        <tr><td>1,000 元</td><td>약 222,000원</td></tr>
+      </table>
+      <p class="tip">빠른 암산: <b>위안 × 200</b>이면 대략 원화예요(살짝 적게 잡힘). 정확히는 <b>위안 × 220</b>. 예) 50元 → 50×220 = 약 11,000원.</p>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">돈 · 숫자 회화</div>
+      <div class="ph"><div class="zh">多少钱?</div><div class="py">뚸사오 치엔?</div><div class="ko">얼마예요?</div></div>
+      <div class="ph"><div class="zh">一共多少?</div><div class="py">이꽁 뚸사오?</div><div class="ko">다 해서 얼마예요?</div></div>
+      <div class="ph"><div class="zh">五十块</div><div class="py">우스 콰이</div><div class="ko">50위안 (块=元의 구어)</div></div>
+      <div class="ph"><div class="zh">扫码</div><div class="py">사오 마</div><div class="ko">QR 스캔(결제)</div></div>
+      <div class="ph"><div class="zh">找钱</div><div class="py">자오 치엔</div><div class="ko">거스름돈</div></div>
+      <div class="ph"><div class="zh">发票</div><div class="py">파 피아오</div><div class="ko">영수증</div></div>
+      <div class="ph"><div class="zh">能便宜吗?</div><div class="py">넝 피엔이 마?</div><div class="ko">깎아줄 수 있어요?</div></div>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">숫자 읽기 ① 기본 (0~10)</div>
+      <table class="rate-tbl num">
+        <tr><td>0 零 링</td><td>1 一 이</td><td>2 二/两 얼/량</td><td>3 三 싼</td></tr>
+        <tr><td>4 四 쓰</td><td>5 五 우</td><td>6 六 리우</td><td>7 七 치</td></tr>
+        <tr><td>8 八 빠</td><td>9 九 지우</td><td>10 十 스</td><td>元 块 콰이</td></tr>
+      </table>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">숫자 읽기 ② 십 단위 (11~99)</div>
+      <table class="rate-tbl num">
+        <tr><td>11 十一 스이</td><td>12 十二 스얼</td><td>15 十五 스우</td><td>18 十八 스빠</td></tr>
+        <tr><td>20 二十 얼스</td><td>25 二十五 얼스우</td><td>30 三十 싼스</td><td>38 三十八 싼스빠</td></tr>
+        <tr><td>40 四十 쓰스</td><td>50 五十 우스</td><td>60 六十 리우스</td><td>70 七十 치스</td></tr>
+        <tr><td>80 八十 빠스</td><td>88 八十八 빠스빠</td><td>90 九十 지우스</td><td>99 九十九 지우스지우</td></tr>
+      </table>
+      <p class="tip">규칙: <b>십의 자리 + 十(스) + 일의 자리</b>. 예) 25 = 얼(2)·스(十)·우(5) = "얼스우".</p>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">숫자 읽기 ③ 백·천·만 단위</div>
+      <table class="rate-tbl num">
+        <tr><td>100 一百 이바이</td><td>120 一百二 이바이얼</td><td>150 一百五 이바이우</td><td>199 一百九十九 이바이지우스지우</td></tr>
+        <tr><td>200 两百 량바이</td><td>300 三百 싼바이</td><td>500 五百 우바이</td><td>800 八百 빠바이</td></tr>
+        <tr><td>1000 一千 이치엔</td><td>1500 一千五 이치엔우</td><td>2000 两千 량치엔</td><td>5000 五千 우치엔</td></tr>
+        <tr><td>10000 一万 이완</td><td>20000 两万 량완</td><td>50000 五万 우완</td><td>100000 十万 스완</td></tr>
+      </table>
+      <p class="tip">백·천 단위는 끝자리를 줄여 말해요. 예) 150 → "이바이우(一百五)", 1,500 → "이치엔우(一千五)". 2는 보통 <b>两(량)</b>으로 읽어요(两百·两千).</p>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">숫자 읽기 ④ 실제 가격 예시</div>
+      <table class="rate-tbl num">
+        <tr><td>8元 八块 빠 콰이</td><td>≈ 1,800원</td></tr>
+        <tr><td>15元 十五块 스우 콰이</td><td>≈ 3,300원</td></tr>
+        <tr><td>33元 三十三块 싼스싼 콰이</td><td>≈ 7,300원</td></tr>
+        <tr><td>68元 六十八块 리우스빠 콰이</td><td>≈ 15,000원</td></tr>
+        <tr><td>88元 八十八块 빠스빠 콰이</td><td>≈ 19,000원</td></tr>
+        <tr><td>120元 一百二 이바이얼</td><td>≈ 26,000원</td></tr>
+        <tr><td>168元 一百六十八 이바이리우스빠</td><td>≈ 37,000원</td></tr>
+        <tr><td>299元 两百九十九 량바이지우스지우</td><td>≈ 66,000원</td></tr>
+        <tr><td>500元 五百 우바이</td><td>≈ 110,000원</td></tr>
+      </table>
+      <p class="tip">소수(角/毛)도 있어요. 예) 12.5元 = "스얼 콰이 우 마오(十二块五毛)". 보통은 元 단위로만 말해도 충분해요.</p>
+    </div>
+
+
+    <div class="talk-group">
+      <div class="talk-head">쇼핑 · 결제 정보 (꼭 알아두기)</div>
+      <ul class="money-list">
+        <li><b>알리페이 / 위챗페이가 거의 전부예요.</b> 노점·택시·식당 모두 QR 결제. 한국 출발 전 <b>알리페이(Alipay)에 해외 카드(비자/마스터)를 등록</b>해두면 가장 편해요.</li>
+        <li><b>현금은 보조용.</b> 일부 가게는 현금/카드를 잘 안 받거나 거스름돈이 없을 수 있어요. 소액 지폐(10·20·50元)를 약간만 챙기세요.</li>
+        <li><b>지폐</b>: 1·5·10·20·50·100元 / <b>동전·소액</b>: 1元, 5角(0.5元), 1角(0.1元). 角(자오)=0.1元.</li>
+        <li><b>구어 표현</b>: 가격 말할 때 元 대신 <b>块(콰이)</b>, 角 대신 <b>毛(마오)</b>를 자주 써요. "스 콰이"=10元.</li>
+        <li><b>흥정</b>: 시장·노점은 가능, 백화점·쇼핑몰·체인점은 정찰제(흥정 X).</li>
+        <li><b>팁(봉사료)</b> 문화 없음 — 따로 안 줘도 돼요.</li>
+        <li><b>환전</b>: 한국에서 위안으로 환전하거나, 알리페이 충전이 편해요. 공항 환전소는 환율이 나쁜 편.</li>
+      </ul>
+    </div>
+
+    <p style="font-size:12.5px;color:var(--ink-soft);margin-top:8px">※ 환산표는 1元 ≈ 220원 어림값이에요. 큰 금액은 휴대폰 계산기나 환율앱으로 정확히 확인하세요.</p>
+  </section>
+
+  <div class="modal-ov" id="copyModal" onclick="if(event.target===this)closeCopy()">
+    <div class="modal">
+      <button class="modal-x" type="button" onclick="closeCopy()" aria-label="닫기">×</button>
+      <div class="modal-label">택시·지도앱에 보여주세요</div>
+      <div class="modal-zh" id="mZh"></div>
+      <div class="modal-ko" id="mKo"></div>
+      <div class="modal-addr" id="mAddr"></div>
+      <button class="btn modal-copy" id="mCopyBtn" type="button">이름·주소 복사</button>
+    </div>
+  </div>
+
   <div class="foot">
     <div class="deco-rule"><span></span><i class="lozenge"></i><span></span></div>
     상하이 가족여행 · 2026.7.16–7.19<br>지도 = 고德 · 리뷰 = 네이버 · 중국어 복사 = 택시/디엔핑용
@@ -300,7 +515,8 @@
       var day=box.getAttribute('data-day');var list=PLACES[day]||[];box.innerHTML='';
       list.forEach(function(p){
         var HOTEL=(day==='2'?'121.4931,31.2453':day==='1'?'121.5057,31.2353':'');
-        var mapUrl='https://uri.amap.com/search?keyword='+encodeURIComponent(p.q)+(HOTEL?'&center='+HOTEL+'&radius=3000':'')+'&city='+encodeURIComponent('上海')+'&coordinate=gaode&src=trip&callnative=1';
+        var amapUrl='https://uri.amap.com/search?keyword='+encodeURIComponent(p.q)+(HOTEL?'&center='+HOTEL+'&radius=3000':'')+'&city='+encodeURIComponent('上海')+'&coordinate=gaode&src=trip&callnative=1';
+        var gmapUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.q);
         var revUrl='https://search.naver.com/search.naver?query='+encodeURIComponent(p.ko+' 상하이');
         var el=document.createElement('article');el.className='card'+(p.stay?' stay':'');
         el.innerHTML=
@@ -310,22 +526,38 @@
           '<div class="menu"><b>'+(p.stay?'즐길거리':'대표')+'</b> · '+p.menu+'</div>'+
           '<div class="addr"><span class="pin">◆</span><span>'+p.addr+'</span></div>'+
           '<div class="actions">'+
-            '<a class="btn btn-map" href="'+mapUrl+'" target="_blank" rel="noopener">지도에서 찾기</a>'+
+            '<a class="btn btn-map" href="'+amapUrl+'" target="_blank" rel="noopener">고德 지도</a>'+
+            '<a class="btn btn-gmap" href="'+gmapUrl+'" target="_blank" rel="noopener">구글 지도</a>'+
             '<a class="btn btn-rev" href="'+revUrl+'" target="_blank" rel="noopener">리뷰 보기</a>'+
-            '<button class="btn btn-copy" type="button" data-zh="'+p.zh.replace(/"/g,'')+'">중국어 복사</button>'+
+            '<button class="btn btn-copy" type="button">중국어 복사</button>'+
           '</div>';
-        box.appendChild(el);
-      });
-      box.querySelectorAll('.btn-copy').forEach(function(b){
-        b.addEventListener('click',function(){
-          var t=b.getAttribute('data-zh').split(' (')[0];
-          var done=function(){b.classList.add('done');b.textContent='복사됨 ✓';setTimeout(function(){b.classList.remove('done');b.textContent='중국어 복사'},1600)};
-          if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,done)}
-          else{var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(ta);done()}
+        el.querySelector('.btn-copy').addEventListener('click',function(){
+          openCopy(p.ko, p.zh, p.addr);
         });
+        box.appendChild(el);
       });
     });
   }
+
+  // 중국어 이름+주소 팝업 + 복사
+  function openCopy(ko, zh, addr){
+    var zhName=zh.split(' (')[0];           // 괄호 영문 제거
+    var text=zhName+'\n'+addr;              // 복사될 내용
+    document.getElementById('mZh').textContent=zhName;
+    document.getElementById('mKo').textContent=ko;
+    document.getElementById('mAddr').textContent=addr;
+    var ov=document.getElementById('copyModal');
+    ov.classList.add('show');
+    var btn=document.getElementById('mCopyBtn');
+    btn.textContent='이름·주소 복사';btn.classList.remove('done');
+    btn.onclick=function(){
+      var done=function(){btn.classList.add('done');btn.textContent='복사됨 ✓'};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,done)}
+      else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(ta);done()}
+    };
+  }
+  function closeCopy(){document.getElementById('copyModal').classList.remove('show')}
+
   render();
 </script>
 </body>

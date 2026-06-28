@@ -37,7 +37,9 @@
   .hero .sub{margin-top:4px;font-size:12.5px;color:rgba(245,239,226,.7)}
 
   /* DAY TABS */
-  .tabs{position:sticky;top:0;z-index:20;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;background:var(--cream);padding:12px 14px;border-bottom:1px solid var(--line)}
+  .tabs{position:sticky;top:0;z-index:20;display:flex;flex-direction:column;gap:7px;align-items:center;background:var(--cream);padding:11px 12px;border-bottom:1px solid var(--line)}
+  .tab-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;align-items:center}
+  .row-label{font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;margin-right:3px}
   .tab{font-family:'Noto Sans KR';font-weight:700;font-size:13px;border:1px solid var(--line);background:transparent;color:var(--ink-soft);padding:8px 16px;border-radius:999px;cursor:pointer;transition:.18s;text-align:center;line-height:1.2}
   .tab small{display:block;font-size:10px;font-weight:500;opacity:.7}
   .tab.active{background:var(--jade);color:var(--cream);border-color:var(--jade)}
@@ -80,6 +82,9 @@
 
   /* places */
   .places-head{margin:30px 0 10px;font-family:'Noto Serif KR';font-size:18px;font-weight:700;color:var(--jade-deep);display:flex;align-items:center;gap:9px}
+  .day-group{font-family:'Noto Serif KR';font-size:14px;font-weight:700;color:var(--crimson);margin:22px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
+  .day-group::before{content:"";width:8px;height:8px;background:var(--gold);transform:rotate(45deg);flex:none}
+  .day-group:first-child{margin-top:6px}
   .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px;margin-bottom:14px;position:relative;overflow:hidden}
   .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--gold),var(--gold-soft))}
   .card.stay::before{background:linear-gradient(var(--crimson),#c75b54)}
@@ -132,6 +137,10 @@
   .money-list li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:8px;font-size:13.5px;line-height:1.55;position:relative;padding-left:30px}
   .money-list li::before{content:"◆";position:absolute;left:12px;top:11px;color:var(--gold);font-size:11px}
   .money-list li b{color:var(--jade-deep)}
+  .plain-list{list-style:none;padding:0;margin:0;columns:2;column-gap:14px}
+  .plain-list li{background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 12px;margin-bottom:7px;font-size:13px;break-inside:avoid;position:relative;padding-left:26px}
+  .plain-list li::before{content:"□";position:absolute;left:11px;top:7px;color:var(--gold);font-size:13px}
+  @media (max-width:480px){.plain-list{columns:1}}
 
   /* copy modal */
   .modal-ov{position:fixed;inset:0;background:rgba(14,58,47,.55);display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
@@ -165,13 +174,27 @@
   </div>
 </header>
 
-<nav class="tabs" role="tablist" aria-label="날짜 선택">
-  <button class="tab active" role="tab" onclick="show(1,this)">1일차<small>7.16 목</small></button>
-  <button class="tab" role="tab" onclick="show(2,this)">2일차<small>7.17 금</small></button>
-  <button class="tab" role="tab" onclick="show(3,this)">3일차<small>7.18 토</small></button>
-  <button class="tab" role="tab" onclick="show(4,this)">4일차<small>7.19 일</small></button>
-  <button class="tab" role="tab" onclick="show('talk',this)">여행 회화<small>중국어</small></button>
-  <button class="tab" role="tab" onclick="show('money',this)">여행 돈<small>환율·결제</small></button>
+<nav class="tabs" role="tablist" aria-label="메뉴">
+  <div class="tab-row">
+    <span class="row-label">스케줄</span>
+    <button class="tab active" role="tab" onclick="show(1,this)">1일차<small>7.16 목</small></button>
+    <button class="tab" role="tab" onclick="show(2,this)">2일차<small>7.17 금</small></button>
+    <button class="tab" role="tab" onclick="show(3,this)">3일차<small>7.18 토</small></button>
+    <button class="tab" role="tab" onclick="show(4,this)">4일차<small>7.19 일</small></button>
+  </div>
+  <div class="tab-row">
+    <span class="row-label">정보</span>
+    <button class="tab" role="tab" onclick="show('hotel',this)">호텔<small>숙소</small></button>
+    <button class="tab" role="tab" onclick="show('food',this)">식당<small>맛집</small></button>
+    <button class="tab" role="tab" onclick="show('spot',this)">갈 곳<small>명소·쇼핑</small></button>
+    <button class="tab" role="tab" onclick="show('tips',this)">꿀팁<small>현지 노하우</small></button>
+  </div>
+  <div class="tab-row">
+    <span class="row-label">그 외</span>
+    <button class="tab" role="tab" onclick="show('talk',this)">여행 회화<small>중국어</small></button>
+    <button class="tab" role="tab" onclick="show('money',this)">여행 돈<small>환율·결제</small></button>
+    <button class="tab" role="tab" onclick="show('prep',this)">준비물<small>체크리스트</small></button>
+  </div>
 </nav>
 
 <main class="wrap">
@@ -207,8 +230,6 @@
       <div class="tl"><div class="time">00:30</div><div class="act">짐 찾고 나옴 · 동진 마중 → 호텔 합류</div></div>
     </div></div>
 
-    <div class="places-head"><i class="lozenge"></i> 가볼 곳 · 루자쭈이</div>
-    <div class="cards" data-day="1"></div>
   </section>
 
   <!-- ===================== DAY 2 ===================== -->
@@ -231,8 +252,6 @@
       <div class="tl"><div class="time">19:00</div><div class="act"><b>예원 · 차이나타운 야경</b><span class="tag">관광</span></div></div>
     </div>
 
-    <div class="places-head"><i class="lozenge"></i> 가볼 곳 · 북외탄</div>
-    <div class="cards" data-day="2"></div>
   </section>
 
   <!-- ===================== DAY 3 ===================== -->
@@ -255,8 +274,6 @@
       <div class="tl stay"><div class="time">20:00</div><div class="act"><b>프라임 미니스터스 맨션 체크인</b><span class="tag hotel">호텔</span><span class="note">전통의상 촬영 예약</span></div></div>
     </div>
 
-    <div class="places-head"><i class="lozenge"></i> 가볼 곳 · 3일차</div>
-    <div class="cards" data-day="3"></div>
   </section>
 
   <!-- ===================== DAY 4 ===================== -->
@@ -281,8 +298,92 @@
       <div class="tl"><div class="time">21:30</div><div class="act"><b>김해공항 도착</b><span class="tag flight">도착</span></div></div>
     </div>
 
-    <div class="places-head"><i class="lozenge"></i> 가볼 곳 · 광푸린</div>
-    <div class="cards" data-day="4"></div>
+  </section>
+
+  <!-- ===================== 호텔 / 식당 / 갈 곳 (모아보기) ===================== -->
+  <section class="day" id="dayhotel" role="tabpanel">
+    <div class="section-head"><div class="d">Hotels · 숙소</div><h2>호텔 정보</h2></div>
+    <div class="cards" data-type="hotel"></div>
+  </section>
+
+  <section class="day" id="dayfood" role="tabpanel">
+    <div class="section-head"><div class="d">Restaurants · 맛집</div><h2>식당 정보</h2></div>
+    <div class="cards" data-type="food"></div>
+  </section>
+
+  <section class="day" id="dayspot" role="tabpanel">
+    <div class="section-head"><div class="d">Places · 명소·쇼핑</div><h2>갈 곳 정보</h2></div>
+    <div class="cards" data-type="spot"></div>
+  </section>
+
+  <!-- ===================== 꿀팁 ===================== -->
+  <section class="day" id="daytips" role="tabpanel">
+    <div class="section-head"><div class="d">Tips · 현지 노하우</div><h2>상하이 여행 꿀팁</h2></div>
+    <p style="font-size:13px;color:var(--ink-soft);margin:6px 0 18px">미리 준비하면 여행이 훨씬 편해져요.</p>
+
+    <div class="talk-group">
+      <div class="talk-head">필수 어플 (출국 전 설치·로그인)</div>
+      <ul class="money-list">
+        <li><b>결제</b> — 알리페이 / 위챗페이</li>
+        <li><b>지도</b> — 바이두 지도 / 고德지도(AMAP)</li>
+        <li><b>맛집·정보</b> — 따종디엔핑(大众点评)</li>
+        <li><b>번역</b> — 파파고</li>
+        <li><b>입국신고 QR</b> — 중국 입국신고서 작성</li>
+        <li>※ 위 앱들은 <b>로그인 필수</b>. 현지선 인증문자 수신이 어려울 수 있어 <b>한국에서 미리 로그인</b>해 두세요.</li>
+      </ul>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">중국 앱 인증이 안 될 때</div>
+      <ul class="money-list">
+        <li>새벽 시간대에 다시 시도</li>
+        <li>스팸 문자함 확인</li>
+        <li>와이파이 끄고(데이터로) 시도</li>
+        <li>해외 문자 차단 여부 확인</li>
+        <li><b>그래도 안 되면</b> — 바이두 앱으로 가입하거나, <b>한국 번호로 가입 가능한 고德지도(AMAP)</b> 이용</li>
+      </ul>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">따종디엔핑 활용 꿀팁</div>
+      <ul class="money-list">
+        <li>현지인 맛집·쇼츠·쿠폰·식당 정보를 한 번에</li>
+        <li>식당 영업시간·메뉴·위치 정보가 가장 정확</li>
+        <li>앱 안에 <b>메이투안(배달)</b> 기능이 있어 따종 하나면 OK</li>
+        <li>⚠️ 메이투안 앱을 따로 깔면 계정 충돌로 403 에러·네트워크 오류 가능 → <b>따종디엔핑 하나만</b> 쓰세요</li>
+      </ul>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">교통 &amp; 배달 꿀팁</div>
+      <ul class="money-list">
+        <li><b>택시</b> — 알리페이 메인 화면의 <b>'디디택시(滴滴)'</b> 이용 (별도 앱 설치 불필요)</li>
+        <li><b>배달</b> — 위챗/알리페이 미니프로그램에서: 위챗→메이투안, 알리페이→어러머(饿了么)·타오바오 등</li>
+        <li>대부분의 결제는 <b>알리페이/위챗페이</b>로 가능</li>
+      </ul>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">상하이 여행 핵심 꿀팁</div>
+      <ul class="money-list">
+        <li><b>현금은 거의 안 써요</b> — 알리페이(80%) &gt; 위챗페이(15%) &gt; 카드(5%). 비상용 현금 200~300위안이면 충분</li>
+        <li>공중화장실에 <b>휴지 없는 곳 많음</b> → 휴지 꼭 챙기기</li>
+        <li>관광지 입장 시 <b>여권 확인</b> 잦음 → 여권 항상 소지</li>
+        <li>식당에서 주는 <b>물은 유료</b>인 경우 많음</li>
+        <li>여권·항공권·일정표는 <b>사진으로 저장</b>해 두면 유용</li>
+        <li>중국 지도앱은 <b>로그인해야</b> 정확한 위치 이용 가능</li>
+      </ul>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">상비약 &amp; 건강</div>
+      <ul class="money-list">
+        <li>기름진·낯선 음식 대비: <b>소화제·지사제·진통제</b></li>
+        <li><b>감기약·피로회복제</b>, 선택: 유산균·영양제</li>
+      </ul>
+    </div>
+
+    <p style="font-size:12.5px;color:var(--ink-soft);margin-top:8px">※ 미리 준비하고, 안전하고 즐거운 상하이 여행 되세요!</p>
   </section>
 
   <!-- ===================== 여행 회화 ===================== -->
@@ -446,6 +547,122 @@
     <p style="font-size:12.5px;color:var(--ink-soft);margin-top:8px">※ 환산표는 1元 ≈ 220원 어림값이에요. 큰 금액은 휴대폰 계산기나 환율앱으로 정확히 확인하세요.</p>
   </section>
 
+  <!-- ===================== 준비물 ===================== -->
+  <section class="day" id="dayprep" role="tabpanel">
+    <div class="section-head"><div class="d">Checklist · 준비물</div><h2>중국 여행 준비물</h2></div>
+
+    <div class="talk-group">
+      <div class="talk-head">출발 전 꼭 (가장 중요)</div>
+      <ul class="money-list">
+        <li><b>여권</b> — 유효기간 6개월 이상 남았는지 확인. 사진 페이지를 휴대폰에 찍어두기.</li>
+        <li><b>항공권·호텔 예약 확인서</b> — 입국 시 제출 요구 가능, 캡처해두기.</li>
+        <li><b>알리페이(Alipay)</b> — <b>해외 카드 등록</b> 필수. 중국은 QR 결제가 거의 전부예요.</li>
+        <li><b>해외 데이터</b> — 유심/이심 또는 로밍. 중국 본토 유심은 일부 앱이 안 되는 경우가 있어, <b>홍콩 경유 이심·한국 로밍</b>이 카톡·구글에 더 안정적.</li>
+      </ul>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">필수 앱 (출발 전 설치)</div>
+      <ul class="money-list">
+        <li><b>알리페이 / 위챗페이</b> — 결제. 알리페이가 외국인에게 더 편함</li>
+        <li><b>고德지도(Amap) 또는 바이두지도</b> — 구글지도는 중국에서 부정확. 이 일정표의 "고德 지도" 버튼과 연동</li>
+        <li><b>따종디엔핑(大众点评)</b> — 맛집 검색·예약·웨이팅 등록</li>
+        <li><b>디디(滴滴 DiDi)</b> — 택시 호출(알리페이 안에서도 호출 가능)</li>
+        <li><b>파파고 / 구글 번역</b> — 사진 번역, 메뉴 해석</li>
+      </ul>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">한여름(7월) 짐 · 의류</div>
+      <ul class="money-list">
+        <li>상하이 7월은 <b>32~35℃ + 높은 습도</b>. 얇고 통풍 잘 되는 옷, 여벌 많이.</li>
+        <li><b>휴대용 선풍기·쿨토시·양산·선글라스·모자</b> — 더위·햇볕 대비</li>
+        <li><b>선크림, 손수건·물티슈</b> — 땀 대비</li>
+        <li><b>편한 신발</b> — 많이 걸어요. 어르신은 미끄럼 방지 신발</li>
+        <li><b>얇은 가디건·스카프</b> — 실내·지하철 냉방이 강함</li>
+        <li><b>우산·우비</b> — 여름 소나기 잦음</li>
+      </ul>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">전자기기 · 기타</div>
+      <ul class="money-list">
+        <li><b>멀티 어댑터</b> — 중국 콘센트는 한국과 일부 달라요(8자형/일자형). 변환 플러그 챙기기</li>
+        <li><b>보조배터리</b> — QR 결제·지도·번역으로 폰 배터리 빨리 닳음 (기내 위탁 금지, 휴대만)</li>
+        <li><b>상비약</b> — 소화제·지사제·해열제·밴드·개인약. 어르신 복용약은 넉넉히 + 영문 처방전</li>
+        <li><b>휴지·물티슈</b> — 공중화장실에 휴지 없는 곳 많음</li>
+        <li><b>텀블러</b> — 호텔·식당에 뜨거운 물 많아 유용</li>
+      </ul>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">어르신 동반 체크</div>
+      <ul class="money-list">
+        <li><b>복용약 + 영문 약 이름</b> 메모, 여유분 챙기기</li>
+        <li>한낮 야외활동은 피하고 <b>실내·이동은 택시(디디)</b> 위주로</li>
+        <li><b>접이식 부채·휴대 의자·물</b> — 대기·이동 중 휴식</li>
+        <li>여권 사본·비상 연락처를 따로 보관</li>
+      </ul>
+    </div>
+
+    <div class="talk-group">
+      <div class="talk-head">현지 주의사항</div>
+      <ul class="money-list">
+        <li><b>구글·카톡·인스타·유튜브 차단</b> — 중국 현지망에서 막혀요. <b>한국 로밍/홍콩 경유 이심</b>을 쓰면 대체로 사용 가능</li>
+        <li><b>현금보다 QR 결제</b> — 알리페이만 있으면 대부분 해결</li>
+        <li><b>수돗물은 못 마셔요</b> — 생수 구입(편의점 흔함)</li>
+        <li><b>택시</b>는 디디 앱이 편하고 바가지 적음. 주소는 이 일정표 "중국어 복사"로 보여주기</li>
+        <li><b>횡단보도</b>에서도 우회전 차량 주의, 전동스쿠터 많음</li>
+        <li>긴급: 공안 110 / 구급 120 / 화재 119</li>
+      </ul>
+    </div>
+
+    <p style="font-size:12.5px;color:var(--ink-soft);margin-top:8px">※ 통신·입국 정책은 바뀔 수 있어요. 출발 1~2주 전 최신 정보를 꼭 확인하세요.</p>
+
+    <div class="talk-group">
+      <div class="talk-head">일반 해외여행 준비물 (체크용)</div>
+      <ul class="plain-list">
+        <li>여권 / 여권 사본</li>
+        <li>항공권(e-티켓)</li>
+        <li>호텔 예약 확인서</li>
+        <li>여행자보험</li>
+        <li>신용카드 / 체크카드</li>
+        <li>현지 화폐(위안) / 비상용 현금</li>
+        <li>휴대폰</li>
+        <li>보조배터리</li>
+        <li>충전기 / 케이블</li>
+        <li>멀티 어댑터(변환 플러그)</li>
+        <li>이어폰</li>
+        <li>유심 / 이심 / 로밍</li>
+        <li>상비약 / 개인 복용약</li>
+        <li>마스크</li>
+        <li>손소독제 / 물티슈 / 휴지</li>
+        <li>세면도구(칫솔·치약·면도기)</li>
+        <li>샴푸 / 바디워시(소형)</li>
+        <li>스킨케어 / 선크림</li>
+        <li>화장품 / 기초 화장솜</li>
+        <li>여벌 옷 / 속옷 / 양말</li>
+        <li>잠옷</li>
+        <li>편한 신발 / 슬리퍼</li>
+        <li>모자 / 선글라스</li>
+        <li>우산 / 우비</li>
+        <li>휴대용 선풍기</li>
+        <li>안경 / 콘택트렌즈 / 렌즈용품</li>
+        <li>손톱깎이 / 면봉</li>
+        <li>비닐봉투 / 지퍼백</li>
+        <li>에코백 / 보조가방</li>
+        <li>여권·귀중품 보관 파우치</li>
+        <li>물통 / 텀블러</li>
+        <li>간식</li>
+        <li>필기구 / 메모지</li>
+        <li>캐리어 / 보조 캐리어(쇼핑용)</li>
+        <li>캐리어 자물쇠 / 네임택</li>
+        <li>빨래망 / 여행용 세제(소형)</li>
+        <li>안대 / 목베개 / 귀마개</li>
+      </ul>
+    </div>
+  </section>
+
   <div class="modal-ov" id="copyModal" onclick="if(event.target===this)closeCopy()">
     <div class="modal">
       <button class="modal-x" type="button" onclick="closeCopy()" aria-label="닫기">×</button>
@@ -476,65 +693,73 @@
 
   var PLACES={
     1:[
-      {stay:1,loc:'진마오타워 · 숙소',ko:'그랜드 하얏트',zh:'金茂君悦大酒店',cat:'우리 숙소 · 5성',menu:'그랜드 클럽 라운지(83층) 애프터눈티·해피아워, 33층 아트리움',addr:'上海市浦东新区世纪大道88号金茂大厦',q:'金茂君悦大酒店 上海世纪大道88号'},
-      {loc:'IFC몰 3층',ko:'라오지스(노길사)',zh:'老吉士',cat:'상하이 본방차이 · 석식',menu:'홍소육(红烧肉), 게살두부, 파기름 비빔면(葱油拌面)',addr:'上海市浦东新区世纪大道8号 国金中心(IFC)商场 3楼',q:'老吉士 国金中心 IFC 上海陆家嘴'},
-      {loc:'정대광장 서관 6층',ko:'점도덕',zh:'点都德',cat:'광둥 딤섬',menu:'새우 챵펀(红米肠), 새우교자, 차슈바오',addr:'上海市浦东新区陆家嘴西路168号正大广场西区6楼614室',q:'点都德 正大广场 上海陆家嘴'},
-      {loc:'진마오타워 B1',ko:'대호춘',zh:'大壶春',cat:'셩젠(군만두) · 노포',menu:'생煎(셩젠), 새우 셩젠, 미니 훈툰',addr:'上海市浦东新区世纪大道88号金茂大厦B1层04号',q:'大壶春 金茂大厦 上海世纪大道88号'},
-      {loc:'정대광장 5층',ko:'희차',zh:'喜茶 (HEYTEA)',cat:'밀크티',menu:'치즈폼 과일차, 다육 포도(多肉葡萄)',addr:'上海市浦东新区陆家嘴西路168号正大广场5F 5F48K',q:'喜茶 正大广场 上海陆家嘴'},
-      {loc:'정대광장',ko:'차희',zh:'霸王茶姬 (CHAGEE)',cat:'밀크티 · 티백 선물',menu:'보야쩨셴 라테 등 동양풍 밀크티, 티백 선물세트',addr:'上海市浦东新区陆家嘴西路168号正大广场',q:'霸王茶姬 正大广场 上海陆家嘴'},
-      {loc:'정대광장',ko:'대백토',zh:'大白兔 (White Rabbit)',cat:'토끼 캔디 · 기념품',menu:'밀크캔디(오리지널·초콜릿·옥수수 등), 굿즈',addr:'上海市浦东新区陆家嘴西路168号正大广场 (층 현장확인)',q:'大白兔 正大广场 上海陆家嘴'},
-      {loc:'정대광장 3층',ko:'칭즈',zh:'清植 (Qingzhi)',cat:'핸드크림 · 선물',menu:'동양 허브향 핸드크림(미니·패키지 선물용)',addr:'上海市浦东新区陆家嘴西路168号正大广场3F',q:'清植 正大广场 上海陆家嘴'},
-      {loc:'정대광장 5층',ko:'미니소',zh:'名创优品 (MINISO)',cat:'팬시 · 선물',menu:'캐릭터 굿즈, 미니 화장품, 생활용품',addr:'上海市浦东新区陆家嘴西路168号正大广场5F',q:'名创优品 正大广场 上海陆家嘴'},
-      {loc:'정대광장 3층',ko:'홀리랜드',zh:'好利来 (Holiland)',cat:'베이커리',menu:'반숙 치즈, 벽돌 초콜릿(브라우니)',addr:'上海市浦东新区陆家嘴西路168号正大广场3F',q:'好利来 正大广场 上海陆家嘴'}
+      {type:'hotel',loc:'진마오타워 · 숙소',ko:'그랜드 하얏트',zh:'金茂君悦大酒店',cat:'우리 숙소 · 5성',menu:'그랜드 클럽 라운지(83층) 애프터눈티·해피아워, 33층 아트리움',addr:'上海市浦东新区世纪大道88号金茂大厦',q:'金茂君悦大酒店 上海世纪大道88号'},
+      {type:'food',loc:'IFC몰 3층',ko:'라오지스(노길사)',zh:'老吉士',cat:'상하이 본방차이 · 석식',menu:'홍소육(红烧肉), 게살두부, 파기름 비빔면(葱油拌面)',addr:'上海市浦东新区世纪大道8号 国金中心(IFC)商场 3楼',q:'老吉士 国金中心 IFC 上海陆家嘴'},
+      {type:'food',loc:'정대광장 서관 6층',ko:'점도덕',zh:'点都德',cat:'광둥 딤섬',menu:'새우 챵펀(红米肠), 새우교자, 차슈바오',addr:'上海市浦东新区陆家嘴西路168号正大广场西区6楼614室',q:'点都德 正大广场 上海陆家嘴'},
+      {type:'food',loc:'진마오타워 B1',ko:'대호춘',zh:'大壶春',cat:'셩젠(군만두) · 노포',menu:'생煎(셩젠), 새우 셩젠, 미니 훈툰',addr:'上海市浦东新区世纪大道88号金茂大厦B1层04号',q:'大壶春 金茂大厦 上海世纪大道88号'},
+      {type:'food',loc:'정대광장 5층',ko:'희차',zh:'喜茶 (HEYTEA)',cat:'밀크티',menu:'치즈폼 과일차, 다육 포도(多肉葡萄)',addr:'上海市浦东新区陆家嘴西路168号正大广场5F 5F48K',q:'喜茶 正大广场 上海陆家嘴'},
+      {type:'food',loc:'정대광장',ko:'차희',zh:'霸王茶姬 (CHAGEE)',cat:'밀크티 · 티백 선물',menu:'보야쩨셴 라테 등 동양풍 밀크티, 티백 선물세트',addr:'上海市浦东新区陆家嘴西路168号正大广场',q:'霸王茶姬 正大广场 上海陆家嘴'},
+      {type:'food',loc:'정대광장 3층',ko:'홀리랜드',zh:'好利来 (Holiland)',cat:'베이커리',menu:'반숙 치즈, 벽돌 초콜릿(브라우니)',addr:'上海市浦东新区陆家嘴西路168号正大广场3F',q:'好利来 正大广场 上海陆家嘴'},
+      {type:'spot',loc:'정대광장',ko:'대백토',zh:'大白兔 (White Rabbit)',cat:'토끼 캔디 · 기념품',menu:'밀크캔디(오리지널·초콜릿·옥수수 등), 굿즈',addr:'上海市浦东新区陆家嘴西路168号正大广场 (층 현장확인)',q:'大白兔 正大广场 上海陆家嘴'},
+      {type:'spot',loc:'정대광장 3층',ko:'칭즈',zh:'清植 (Qingzhi)',cat:'핸드크림 · 선물',menu:'동양 허브향 핸드크림(미니·패키지 선물용)',addr:'上海市浦东新区陆家嘴西路168号正大广场3F',q:'清植 正大广场 上海陆家嘴'},
+      {type:'spot',loc:'정대광장 5층',ko:'미니소',zh:'名创优品 (MINISO)',cat:'팬시 · 선물',menu:'캐릭터 굿즈, 미니 화장품, 생활용품',addr:'上海市浦东新区陆家嘴西路168号正大广场5F',q:'名创优品 正大广场 上海陆家嘴'}
     ],
     2:[
-      {stay:1,loc:'북외탄 · 숙소',ko:'하얏트 온더 번드',zh:'上海外滩茂悦大酒店',cat:'우리 숙소 · 5성',menu:'VUE 바(32~33층 루프탑·야경), 1층 신다루(베이징덕), 수영장·핫텁',addr:'上海市虹口区黄浦路199号',q:'上海外滩茂悦大酒店 黄浦路199号'},
-      {loc:'백옥란광장(SMP) 2층',ko:'점도덕',zh:'点都德',cat:'광둥 딤섬 · 중식',menu:'새우 챵펀, 새우교자 / 10:00~22:00',addr:'上海市虹口区东长治路555号白玉兰广场2楼 L2-08',q:'点都德 白玉兰广场 上海北外滩'},
-      {loc:'홍커우 (택시 10분)',ko:'헌치우이치엔',zh:'很久以前 (Long Time Ago)',cat:'양꼬치 · 중식',menu:'내몽골 양꼬치, 마늘새우꼬치, 옥수수구이 (직원이 구워줌)',addr:'虹口区临平路123号瑞虹天地瑞虹坊1层 (瑞虹坊店 10:00~22:00)',q:'很久以前 瑞虹坊 上海虹口'},
-      {loc:'황푸구 (택시 10분)',ko:'홍회갑(마라룽샤)',zh:'红盔甲',cat:'마라룽샤 · 석식',menu:'마라 민물가재(小龙虾) — 7월 제철',addr:'上海市黄浦区金陵东路500号亚龙国际广场2楼',q:'红盔甲 金陵东路 上海'},
-      {loc:'호텔 근처 (택시 10분)',ko:'외갓댁',zh:'外婆家 (Grandma\u2019s Home)',cat:'상하이 가정식',menu:'홍소육, 마파두부, 거지닭 — 가성비 본방',addr:'西藏北路166호 大悦城 (가장 가까운 지점)',q:'外婆家 大悦城 上海'},
-      {loc:'백옥란광장(SMP)',ko:'차희',zh:'霸王茶姬 (CHAGEE)',cat:'밀크티 · 티백 선물',menu:'동양풍 밀크티, 티백 선물세트',addr:'上海市虹口区东长治路588号白玉兰广场',q:'霸王茶姬 白玉兰广场 上海北外滩'},
-      {loc:'쑤저우허 강변 (도보)',ko:'우정박물관',zh:'邮政博物馆',cat:'명소 · 역사건축',menu:'1924년 우정총국 건물·시계탑, 옥상정원 전망 (개방 요일 확인)',addr:'上海市虹口区天潼路395号',q:'上海邮政博物馆 天潼路395号'},
-      {loc:'택시 10~15분',ko:'예원',zh:'豫园',cat:'명소 · 정원·야시장',menu:'명청대 정원, 남상만두, 차이나타운 야경',addr:'上海市黄浦区安仁街137号',q:'豫园 上海黄浦区'}
+      {type:'hotel',loc:'북외탄 · 숙소',ko:'하얏트 온더 번드',zh:'上海外滩茂悦大酒店',cat:'우리 숙소 · 5성',menu:'VUE 바(32~33층 루프탑·야경), 1층 신다루(베이징덕), 수영장·핫텁',addr:'上海市虹口区黄浦路199号',q:'上海外滩茂悦大酒店 黄浦路199号'},
+      {type:'food',loc:'백옥란광장(SMP) 2층',ko:'점도덕',zh:'点都德',cat:'광둥 딤섬 · 중식',menu:'새우 챵펀, 새우교자 / 10:00~22:00',addr:'上海市虹口区东长治路555号白玉兰广场2楼 L2-08',q:'点都德 白玉兰广场 上海北外滩'},
+      {type:'food',loc:'홍커우 (택시 10분)',ko:'헌치우이치엔',zh:'很久以前 (Long Time Ago)',cat:'양꼬치 · 중식',menu:'내몽골 양꼬치, 마늘새우꼬치, 옥수수구이 (직원이 구워줌)',addr:'虹口区临平路123号瑞虹天地瑞虹坊1层 (瑞虹坊店 10:00~22:00)',q:'很久以前 瑞虹坊 上海虹口'},
+      {type:'food',loc:'황푸구 (택시 10분)',ko:'홍회갑(마라룽샤)',zh:'红盔甲',cat:'마라룽샤 · 석식',menu:'마라 민물가재(小龙虾) — 7월 제철',addr:'上海市黄浦区金陵东路500号亚龙国际广场2楼',q:'红盔甲 金陵东路 上海'},
+      {type:'food',loc:'호텔 근처 (택시 10분)',ko:'외갓댁',zh:'外婆家 (Grandma\u2019s Home)',cat:'상하이 가정식',menu:'홍소육, 마파두부, 거지닭 — 가성비 본방',addr:'西藏北路166호 大悦城 (가장 가까운 지점)',q:'外婆家 大悦城 上海'},
+      {type:'food',loc:'백옥란광장(SMP)',ko:'차희',zh:'霸王茶姬 (CHAGEE)',cat:'밀크티 · 티백 선물',menu:'동양풍 밀크티, 티백 선물세트',addr:'上海市虹口区东长治路588号白玉兰广场',q:'霸王茶姬 白玉兰广场 上海北外滩'},
+      {type:'spot',loc:'쑤저우허 강변 (도보)',ko:'우정박물관',zh:'邮政博物馆',cat:'명소 · 역사건축',menu:'1924년 우정총국 건물·시계탑, 옥상정원 전망 (개방 요일 확인)',addr:'上海市虹口区天潼路395号',q:'上海邮政博物馆 天潼路395号'},
+      {type:'spot',loc:'택시 10~15분',ko:'예원',zh:'豫园',cat:'명소 · 정원·야시장',menu:'명청대 정원, 남상만두, 차이나타운 야경',addr:'上海市黄浦区安仁街137号',q:'豫园 上海黄浦区'}
     ],
     3:[
-      {stay:1,loc:'3일차 · 숙소',ko:'프라임 미니스터스 맨션',zh:'光福林 Prime Minister\u2019s Mansion',cat:'우리 숙소 · 전통의상 촬영',menu:'중국 전통의상 촬영 예약, 고풍 인테리어',addr:'(예약 시 주소 확인)',q:'光富林 普莱姆 公馆 上海'},
-      {loc:'백옥란광장(SMP) 2층',ko:'점도덕',zh:'点都德',cat:'광둥 딤섬 · 아침/점심',menu:'새우 챵펀, 하가우 / 10:00~22:00',addr:'上海市虹口区东长治路555号白玉兰广场2楼',q:'点都德 白玉兰广场 上海北外滩'},
-      {loc:'푸퉈구 (택시 40분~)',ko:'곡수란정',zh:'曲水兰亭',cat:'고급 찜질·뷔페',menu:'캐비어·푸아그라 등 뷔페 / 점심 11~14, 저녁 17~20',addr:'上海曲水兰亭酒店 (真北路 일대 · 현장확인)',q:'上海曲水兰亭酒店'}
+      {type:'hotel',loc:'3일차 · 숙소',ko:'프라임 미니스터스 맨션',zh:'光福林 Prime Minister\u2019s Mansion',cat:'우리 숙소 · 전통의상 촬영',menu:'중국 전통의상 촬영 예약, 고풍 인테리어',addr:'(예약 시 주소 확인)',q:'光富林 普莱姆 公馆 上海'},
+      {type:'food',loc:'백옥란광장(SMP) 2층',ko:'점도덕',zh:'点都德',cat:'광둥 딤섬 · 아침/점심',menu:'새우 챵펀, 하가우 / 10:00~22:00',addr:'上海市虹口区东长治路555号白玉兰广场2楼',q:'点都德 白玉兰广场 上海北外滩'},
+      {type:'spot',loc:'푸퉈구 (택시 40분~)',ko:'곡수란정',zh:'曲水兰亭',cat:'고급 찜질·뷔페',menu:'캐비어·푸아그라 등 뷔페 / 점심 11~14, 저녁 17~20',addr:'上海曲水兰亭酒店 (真北路 일대 · 현장확인)',q:'上海曲水兰亭酒店'}
     ],
     4:[
-      {loc:'쑹장구 광푸린',ko:'광푸린 문화유적지',zh:'广富林文化遗址',cat:'명소 · 역사공원',menu:'호수 위 수중박물관(水下博物馆), 고건축군, 知也禅寺',addr:'上海市松江区广富林路3260弄',q:'广富林文化遗址 上海松江'},
-      {loc:'광푸린',ko:'일척화원(광푸린점)',zh:'一尺花园 (广富林店)',cat:'카페 · 브런치',menu:'정원형 카페, 브런치 플레이트, 음료',addr:'上海市松江区广富林 一尺花园',q:'一尺花园 广富林 上海松江'},
-      {loc:'쑹장구 (광푸린 근처)',ko:'방탑원',zh:'方塔园',cat:'명소 · 고전 정원',menu:'송대 9층 방탑, 강남 원림 산책',addr:'上海市松江区中山东路235号',q:'方塔园 上海松江'},
-      {loc:'쑹장구 (가족·아이)',ko:'상하이 환러구',zh:'上海欢乐谷',cat:'테마파크',menu:'대형 놀이공원 (아이·청소년)',addr:'上海市松江区林湖路888号',q:'上海欢乐谷 松江'}
+      {type:'spot',loc:'쑹장구 광푸린',ko:'광푸린 문화유적지',zh:'广富林文化遗址',cat:'명소 · 역사공원',menu:'호수 위 수중박물관(水下博物馆), 고건축군, 知也禅寺',addr:'上海市松江区广富林路3260弄',q:'广富林文化遗址 上海松江'},
+      {type:'food',loc:'광푸린',ko:'일척화원(광푸린점)',zh:'一尺花园 (广富林店)',cat:'카페 · 브런치',menu:'정원형 카페, 브런치 플레이트, 음료',addr:'上海市松江区广富林 一尺花园',q:'一尺花园 广富林 上海松江'},
+      {type:'spot',loc:'쑹장구 (광푸린 근처)',ko:'방탑원',zh:'方塔园',cat:'명소 · 고전 정원',menu:'송대 9층 방탑, 강남 원림 산책',addr:'上海市松江区中山东路235号',q:'方塔园 上海松江'},
+      {type:'spot',loc:'쑹장구 (가족·아이)',ko:'상하이 환러구',zh:'上海欢乐谷',cat:'테마파크',menu:'대형 놀이공원 (아이·청소년)',addr:'上海市松江区林湖路888号',q:'上海欢乐谷 松江'}
     ]
   };
 
+  var DAYLABEL={1:'1일차 · 7.16 · 루자쭈이',2:'2일차 · 7.17 · 북외탄',3:'3일차 · 7.18',4:'4일차 · 7.19 · 광푸린'};
+  var CENTER={1:'121.5057,31.2353',2:'121.4931,31.2453'};
+
+  function buildCard(p,day){
+    var HOTEL=CENTER[day]||'';
+    var amapUrl='https://uri.amap.com/search?keyword='+encodeURIComponent(p.q)+(HOTEL?'&center='+HOTEL+'&radius=3000':'')+'&city='+encodeURIComponent('上海')+'&coordinate=gaode&src=trip&callnative=1';
+    var gmapUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.q);
+    var revUrl='https://search.naver.com/search.naver?query='+encodeURIComponent(p.ko+' 상하이');
+    var el=document.createElement('article');el.className='card'+(p.type==='hotel'?' stay':'');
+    el.innerHTML=
+      '<div class="loc">'+p.loc+'</div>'+
+      '<h3>'+p.ko+' <span class="zh">'+p.zh+'</span></h3>'+
+      '<span class="cat">'+p.cat+'</span>'+
+      '<div class="menu"><b>'+(p.type==='hotel'?'즐길거리':'대표')+'</b> · '+p.menu+'</div>'+
+      '<div class="addr"><span class="pin">◆</span><span>'+p.addr+'</span></div>'+
+      '<div class="actions">'+
+        '<a class="btn btn-map" href="'+amapUrl+'" target="_blank" rel="noopener">고德 지도</a>'+
+        '<a class="btn btn-gmap" href="'+gmapUrl+'" target="_blank" rel="noopener">구글 지도</a>'+
+        '<a class="btn btn-rev" href="'+revUrl+'" target="_blank" rel="noopener">리뷰 보기</a>'+
+        '<button class="btn btn-copy" type="button">중국어 복사</button>'+
+      '</div>';
+    el.querySelector('.btn-copy').addEventListener('click',function(){openCopy(p.ko,p.zh,p.addr)});
+    return el;
+  }
+
   function render(){
-    document.querySelectorAll('.cards').forEach(function(box){
-      var day=box.getAttribute('data-day');var list=PLACES[day]||[];box.innerHTML='';
-      list.forEach(function(p){
-        var HOTEL=(day==='2'?'121.4931,31.2453':day==='1'?'121.5057,31.2353':'');
-        var amapUrl='https://uri.amap.com/search?keyword='+encodeURIComponent(p.q)+(HOTEL?'&center='+HOTEL+'&radius=3000':'')+'&city='+encodeURIComponent('上海')+'&coordinate=gaode&src=trip&callnative=1';
-        var gmapUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.q);
-        var revUrl='https://search.naver.com/search.naver?query='+encodeURIComponent(p.ko+' 상하이');
-        var el=document.createElement('article');el.className='card'+(p.stay?' stay':'');
-        el.innerHTML=
-          '<div class="loc">'+p.loc+'</div>'+
-          '<h3>'+p.ko+' <span class="zh">'+p.zh+'</span></h3>'+
-          '<span class="cat">'+p.cat+'</span>'+
-          '<div class="menu"><b>'+(p.stay?'즐길거리':'대표')+'</b> · '+p.menu+'</div>'+
-          '<div class="addr"><span class="pin">◆</span><span>'+p.addr+'</span></div>'+
-          '<div class="actions">'+
-            '<a class="btn btn-map" href="'+amapUrl+'" target="_blank" rel="noopener">고德 지도</a>'+
-            '<a class="btn btn-gmap" href="'+gmapUrl+'" target="_blank" rel="noopener">구글 지도</a>'+
-            '<a class="btn btn-rev" href="'+revUrl+'" target="_blank" rel="noopener">리뷰 보기</a>'+
-            '<button class="btn btn-copy" type="button">중국어 복사</button>'+
-          '</div>';
-        el.querySelector('.btn-copy').addEventListener('click',function(){
-          openCopy(p.ko, p.zh, p.addr);
-        });
-        box.appendChild(el);
+    ['hotel','food','spot'].forEach(function(type){
+      var box=document.querySelector('.cards[data-type="'+type+'"]');if(!box)return;box.innerHTML='';
+      [1,2,3,4].forEach(function(day){
+        var items=(PLACES[day]||[]).filter(function(p){return p.type===type});
+        if(!items.length)return;
+        var h=document.createElement('div');h.className='day-group';h.textContent=DAYLABEL[day];box.appendChild(h);
+        items.forEach(function(p){box.appendChild(buildCard(p,day))});
       });
     });
   }
